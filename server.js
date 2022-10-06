@@ -15,3 +15,6 @@ app.get('/', (req, res) => {
 
 //View engine will convert ejs code into html
 app.set('view engine', 'ejs')
+
+//Tells server to use articleRouter at localhost:port/articles
+app.use('/articles', articleRouter)
