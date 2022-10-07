@@ -1,11 +1,23 @@
-<!-- Underscoring (_form_fields) as a visual
-representation of a partial view with nothing else -->
+<!-- Underscoring (_form_fields) as a visual representation 
+of a partial view with nothing else involved-->
 
+
+<!-- Include() into new.ejs form -->
 <div class="form-group">
     <label for="title">Title</label>
-    
     <!-- Bootstrap CSS: 'form-control' gives style upgrade/focus -->
-    <input required type="text" name="title" id="title" class="form-control">
-
-    <button type="submit" class="btn btn-primary">Save</button>
+    <input required value="<%= article.title %>" type="text" name="title" id="title" class="form-control">
 </div>
+<div class="form-group">
+    <label for="description">Description</label>
+    <textarea name="description" id="description" class="form-control"><%= article.description %></textarea>
+</div>
+<div class="form-group">
+    <label for="markdown">Markdown</label>
+    <textarea name="markdown" id="markdown" class="form-control"><%= article.markdown %></textarea>
+</div>
+
+<!-- Cancel button links back to localhost:port/articles -->
+<!-- Submit button activates POST request to articles.js, where it will respond -->
+<a href="/" class="btn btn-secondary">Cancel</a>
+<button type="submit" class="btn btn-primary">Save</button>
