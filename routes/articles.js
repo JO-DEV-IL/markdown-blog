@@ -14,7 +14,8 @@ const router = express.Router()
 module.exports = router
 
 
-// localhost:port/articles response
-router.get('/', (req, res) => {
-    res.send('In articles')
+// localhost:port/articles/new
+// request/response
+router.get('/new', (req, res) => {
+    res.render('articles/new')
 })

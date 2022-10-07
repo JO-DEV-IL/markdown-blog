@@ -1,0 +1,38 @@
+<!-- EJS file that acts as an index.html file -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Bootstrap CSS Install -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+</head>
+<body>
+    <!-- Bootstrap CSS: container class provides some padding around the div -->
+    <div class="container">
+        <!-- Bootstrap CSS: margin-bottom of 4, mt = margin-top, etc. -->
+        <h1 class="mb-4">Blog Articles</h1>
+        <!-- Bootstrap CSS: button and button-success -->
+        <a href="/articles/new" class="btn btn-success">New Article</a>
+
+        <!-- ESJ syntax -->
+        <!-- For each interation in the Articles array, output this HTML over it -->
+        <% articles.forEach(article => { %>
+            <div class="card mt-4">
+                <h4 class="card-title"><%= article.title %></h4>
+                <!-- Bootstrap CSS: text-muted makes font color a light grey -->
+                <div class="card-subtitle text-muted mb-2">
+                    <!-- toLocaleDateString() converts 'new Date()' timestamp into local time -->
+                    <%= article.createdAt.toLocaleDateString() %>
+                </div>
+                <div class="card-text mb-2"><%= article.description %></div>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>

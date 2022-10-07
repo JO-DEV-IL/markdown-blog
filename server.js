@@ -8,14 +8,27 @@ const port = 8000
 app.listen(port)
 
 //Server response
-//Renders index.ejs file to localhost:port/
 app.get('/', (req, res) => {
+    
+    //Articles array
     const articles = [{
         title: 'Test Article',
-        createdAt: Date.now(), //Data.now() is a function that tracks the exact time
+        createdAt: new Date(), //Function to capture current date
+        description: 'Test description'
+    },
+    {
+        title: 'Test Article 2',
+        createdAt: new Date(), //Function to capture current date
+        description: 'Test description'
+    },
+    {
+        title: 'Test Article 3',
+        createdAt: new Date(), //Function to capture current date
         description: 'Test description'
     }]
-    res.render('index', { articles: "Hello" })
+    //Renders index.ejs in articles folder to localhost:port/
+    //Renders articles object to index.ejs
+    res.render('articles/index', { articles: articles })
 })
 
 //View engine will convert ejs code into html
