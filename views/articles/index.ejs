@@ -25,13 +25,16 @@
         <!-- For each interation in the Articles array, output this HTML over it -->
         <% articles.forEach(article => { %>
             <div class="card mt-4">
-                <h4 class="card-title"><%= article.title %></h4>
-                <!-- Bootstrap CSS: text-muted makes font color a light grey -->
-                <div class="card-subtitle text-muted mb-2">
-                    <!-- toLocaleDateString() converts 'new Date()' timestamp into local time -->
-                    <%= article.createdAt.toLocaleDateString() %>
+                <div class="card-body">
+                    <h4 class="card-title"><%= article.title %></h4>
+                    <!-- Bootstrap CSS: text-muted makes font color a light grey -->
+                    <div class="card-subtitle text-muted mb-2">
+                        <!-- toLocaleDateString() converts 'new Date()' timestamp into local time -->
+                        <%= article.createdAt.toLocaleDateString() %>
+                    </div>
+                    <div class="card-text mb-2"><%= article.description %></div>
+                    <a href="articles/<%= article.id %> " class="btn btn-primary">Read More</a>
                 </div>
-                <div class="card-text mb-2"><%= article.description %></div>
             </div>
         <% }) %>
     </div>

@@ -3,8 +3,10 @@ const express = require('express')
 const app = express()
 const articleRouter = require('./routes/articles')
 const mongoose = require('mongoose')
+const Article = require('./models/article')
 
 //MongoDB connection using mongoose
+//run mongodb://127.0.0.1:27017/blog into mongosh
 mongoose.connect('mongodb://127.0.0.1:27017/blog')
 
 //View engine will convert ejs code into html
@@ -17,26 +19,12 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 
 //Server request/response
-app.get('/', (req, res) => {
-    
-    //Articles array
-    const articles = [{
-        title: 'Test Article',
-        createdAt: new Date(), //Function to capture current date
-        description: 'Test description'
-    },
-    {
-        title: 'Test Article 2',
-        createdAt: new Date(), //Function to capture current date
-        description: 'Test description'
-    },
-    {
-        title: 'Test Article 3',
-        createdAt: new Date(), //Function to capture current date
-        description: 'Test description'
-    }]
+//find() is async
+app.get('/', async (req, res) => {
+    //variable to find articles that have been created and sort them based on when they were created (createdAt) in descending ('desc') order
+    const articles = await Article.find().sort({ createdAt: 'desc' })
     //Renders index.ejs in articles folder to localhost:port/
-    //Renders articles object to index.ejs
+    //Renders articles to index.ejs
     res.render('articles/index', { articles: articles })
 })
 

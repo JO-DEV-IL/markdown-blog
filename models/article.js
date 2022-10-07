@@ -1,5 +1,13 @@
 //Requirements
+
+//MongoDB access
 const mongoose = require('mongoose')
+
+//create markdown and convert into HTML
+const marked = require('marked')
+
+//Library to create 'slugs' (version of title to use as url path)
+const slug = require('slugify')
 
 
 //Article 'blueprint' using mongoose Schema feature

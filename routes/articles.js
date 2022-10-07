@@ -9,8 +9,8 @@ const Article = require('./../models/article')
 // by giving them their own file
 const router = express.Router()
 
-// localhost:port/articles/new
-// request/response
+// localhost:port/articles/new request/response
+// pass in article parameter to ensure no 'article is undefined' errors
 router.get('/new', (req, res) => {
     res.render('articles/new', { article: new Article( )})
 })
@@ -21,16 +21,19 @@ router.get('/new', (req, res) => {
 // Response will be to save POST to MongoDB
 // Linked to 'article.js' model
 // express.urlencoded() in server.js allows data to pass through 'req.body'
+// changed 'const' article to 'let' to allow reassignment during success
 router.post('/', async (req, res) => {
-    const article = new Article({
+    let article = new Article({
         title: req.body.title,
         description: req.body.description,
         markdown: req.body.markdown
     })
     try{
+        //reasignment of article varibale to hold the saved article on success
         article = await article.save()
         res.redirect(`/articles/${article.id}`)
     }catch(error){
+        // console.log(error)
         res.render('articles/new', { article: article })
     }
     //save() is asyncrynous
@@ -41,9 +44,17 @@ router.post('/', async (req, res) => {
 })
 
 //Saved article.id router
-router.get('/:id', (req, res) => {
-
+//findById() is an async function
+router.get('/:id', async (req, res) => {
+    //variable to locate the article id
+    const article = await Article.findById(req.params.id)
+    
+    //if there is no article, redirect user back to localhost:port/
+    if(article == null) res.redirect('/')
+    
+    //renders article property w/id @ localhost:port/articles/show
+    res.render('articles/show', { article: article })
 })
 
-// Exports router file to server.js dependencies
+//Export router file to server.js dependencies
 module.exports = router
