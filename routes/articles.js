@@ -19,3 +19,10 @@ module.exports = router
 router.get('/new', (req, res) => {
     res.render('articles/new')
 })
+
+// Linked to POST request in new.ejs
+// Functionally similar to app.post
+// Whenever form is submitted it will call on this res
+router.post('/', (req, res) => {
+
+})
