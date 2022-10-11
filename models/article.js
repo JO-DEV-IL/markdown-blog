@@ -41,6 +41,8 @@ articleSchema.pre('validate', function(){
     if(this.title){
         this.slug = slugify(this.title, { lower: true, strict: true })
     }
+    //Errors will popup without the next function
+    next()
 })
 
 //Export this schema
