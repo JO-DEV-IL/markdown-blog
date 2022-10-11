@@ -9,10 +9,10 @@ const Article = require('./../models/article')
 // by giving them their own file
 const router = express.Router()
 
-// localhost:port/articles/new request/response
+// localhost:port/articles/new
 // pass in article parameter to ensure no 'article is undefined' errors
 router.get('/new', (req, res) => {
-    res.render('articles/new', { article: new Article( )})
+    res.render('articles/new', { article: new Article()})
 })
 
 // Linked to POST request in new.ejs
@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
         article = await article.save()
         res.redirect(`/articles/${article.id}`)
     }catch(error){
-        // console.log(error)
+        console.log(error)
         res.render('articles/new', { article: article })
     }
     //save() is asyncrynous
