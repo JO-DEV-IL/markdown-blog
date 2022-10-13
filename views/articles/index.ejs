@@ -33,7 +33,13 @@
                         <%= article.createdAt.toLocaleDateString() %>
                     </div>
                     <div class="card-text mb-2"><%= article.description %></div>
-                    <a href="articles/<%= article.id %> " class="btn btn-primary">Read More</a>
+                    <!-- added .slug instead of .id to article variable -->
+                    <a href="articles/<%= article.slug %> " class="btn btn-primary">Read More</a>
+                    <a href="articles/edit/<%= article.id %> " class="btn btn-info">Edit</a>
+                    <!-- utilizing method-override by including ?_method=DELETE despite method of form being POST which becomes irrelevant but necessary for the form requirements-->
+                    <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
             </div>
         <% }) %>

@@ -4,6 +4,7 @@ const app = express()
 const articleRouter = require('./routes/articles')
 const mongoose = require('mongoose')
 const Article = require('./models/article')
+const methodOverride = require('method-override')
 
 //MongoDB connection using mongoose
 //run mongodb://127.0.0.1:27017/blog into mongosh
@@ -17,6 +18,11 @@ app.set('view engine', 'ejs')
 //Anything that needs this feature will have to come AFTER this line of code
 //i.e 'app use /articles' articleRouter
 app.use(express.urlencoded({ extended: false }))
+
+//Method override library allows for DELETE as a method
+//Can be used to override whatever method the form passes(GET/POST)
+//Easier way to create delete buttons
+app.use(methodOverride('_method'))
 
 //Server request/response
 //find() is async
