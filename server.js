@@ -38,6 +38,9 @@ app.get('/', async (req, res) => {
 //Tells server to use articleRouter at localhost:port/articles
 app.use('/articles', articleRouter)
 
+//External css stylesheet
+app.use(express.static(__dirname + '/public'))
+
 //Server Port
 const port = 8000
 app.listen(port, () => {
