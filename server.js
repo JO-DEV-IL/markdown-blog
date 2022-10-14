@@ -52,6 +52,7 @@ app.use('/articles', articleRouter)
 app.use(express.static(__dirname + '/public'))
 
 //Server Port
+let PORT = 8000
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Connected to port ${PORT}!`);
   })
