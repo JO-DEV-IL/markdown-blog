@@ -7,8 +7,18 @@ const Article = require('./models/article')
 const methodOverride = require('method-override')
 
 //MongoDB connection using mongoose
-//run mongodb://127.0.0.1:27017/blog into mongosh
-mongoose.connect('mongodb://127.0.0.1:27017/blog')
+mongoose.connect(
+    `mongodb+srv://jo-dev-il:admin@cluster0.pemhl1o.mongodb.net/?retryWrites=true&w=majority`,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }
+)
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error: "));
+db.once("open", function () {
+  console.log("Connected successfully");
+})
 
 //View engine will convert ejs code into html
 app.set('view engine', 'ejs')
