@@ -29,15 +29,14 @@
             <div class="card mt-4 mb-4">
                 <div class="card-body">
                     <h4 class="card-title"><%= article.title %></h4>
-                    <!-- Bootstrap CSS: text-muted makes font color a light grey -->
-                    <div class="card-subtitle text-muted mb-2">
+                    <div class="card-subtitle text-secondary mb-2">
                         <!-- toLocaleDateString() converts 'new Date()' timestamp into local time -->
                         <%= article.createdAt.toLocaleDateString() %>
                     </div>
                     <div class="card-text mb-2"><%= article.description %></div>
                     <!-- added .slug instead of .id to article variable -->
-                    <a href="articles/<%= article.slug %> " class="btn btn-warning">Read More</a>
-                    <a href="articles/edit/<%= article.id %> " class="btn btn-warning">Edit</a>
+                    <a href="articles/<%= article.slug %> " class="btn btn-light">Read More</a>
+                    <a href="articles/edit/<%= article.id %> " class="btn btn-secondary">Edit</a>
                     <!-- utilizing method-override by including ?_method=DELETE despite method of form being POST which becomes irrelevant but necessary for the form requirements-->
                     <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
                         <button type="submit" class="btn btn-danger">Delete</button>
