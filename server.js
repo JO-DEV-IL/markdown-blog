@@ -52,7 +52,7 @@ app.use('/articles', articleRouter)
 app.use(express.static(__dirname + '/public'))
 
 //Server Port
-const port = 8000
+// const port = 8000
 app.listen(port, () => {
     console.log(`Server successfully running on port ${port}!`)
 })
